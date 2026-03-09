@@ -1,0 +1,43 @@
+server:
+  port: 3000
+
+# 数据库连接（按实际情况修改）
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/paiagent?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: qwer   # 修改为你的 MySQL 密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.paiagent.entity
+    configuration:
+      map-underscore-to-camel-case: true
+
+# MinIO 配置（按实际情况修改）
+minio:
+  endpoint: http://localhost:9000
+  accessKey: admin
+  secretKey: admin123
+  bucketName: paiagent
+
+# llm:
+#   openai:
+#     api-key: ${OPENAI_API_KEY}
+#   deepseek:
+#     api-key: ${DEEPSEEK_API_KEY}
+#   qwen:
+#     api-key: ${QWEN_API_KEY}
+#   zhipu:
+#     api-key: ${ZHIPU_API_KEY}
+
+logging:
+  level:
+    com.paiagent: DEBUG
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
